@@ -158,6 +158,8 @@ public class ModItems {
     public static final RegistryObject<Item> BULLET_68 = REGISTER.register("bullet68", TimelessAmmoItem::new);
 
     /* Explosives */
+    public static final RegistryObject<Item> STUN_GRENADE = REGISTER.register("stun_grenade",
+            () -> new StunGrenadeItem(new Item.Properties().maxStackSize(6).group(GunMod.EXPLOSIVES), 20 * 3,1.35f));
     public static final RegistryObject<Item> RPG7_MISSILE = REGISTER.register("rpg7_missile",
             () -> new AmmoItem(new Item.Properties().maxStackSize(6).group(GunMod.AMMO)));
     public static final RegistryObject<Item> LIGHT_GRENADE = REGISTER.register("light_grenade",

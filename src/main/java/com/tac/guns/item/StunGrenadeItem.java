@@ -27,7 +27,7 @@ public class StunGrenadeItem extends GrenadeItem
     @Override
     public boolean canCook()
     {
-        return false;
+        return true;
     }
 
     @Override
