@@ -3,6 +3,7 @@ package com.tac.guns.client;
 import com.tac.guns.Reference;
 import com.tac.guns.client.particle.BloodParticle;
 import com.tac.guns.client.particle.BulletHoleParticle;
+import com.tac.guns.client.particle.GrenadeSmokeParticle;
 import com.tac.guns.init.ModParticleTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleManager;
@@ -23,5 +24,6 @@ public class ParticleFactoryRegistry
         ParticleManager particleManager = Minecraft.getInstance().particles;
         particleManager.registerFactory(ModParticleTypes.BULLET_HOLE.get(), (typeIn, worldIn, x, y, z, xSpeed, ySpeed, zSpeed) -> new BulletHoleParticle(worldIn, x, y, z, typeIn.getDirection(), typeIn.getPos()));
         particleManager.registerFactory(ModParticleTypes.BLOOD.get(), BloodParticle.Factory::new);
+        particleManager.registerFactory(ModParticleTypes.GRENADE_SMOKE.get(), GrenadeSmokeParticle.Factory::new);
     }
 }

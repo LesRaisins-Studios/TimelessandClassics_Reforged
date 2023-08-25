@@ -25,7 +25,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 public abstract class ThrowableItemEntity extends ThrowableEntity implements IEntityAdditionalSpawnData
 {
     private ItemStack item = ItemStack.EMPTY;
-    private boolean shouldBounce;
+    protected boolean shouldBounce;
     private float gravityVelocity = 0.03F;
 
     /* The max life of the entity. If -1, will stay alive forever and will need to be explicitly removed. */

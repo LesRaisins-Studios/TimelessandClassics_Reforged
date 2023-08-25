@@ -7,6 +7,7 @@ import com.tac.guns.item.*;
 import com.tac.guns.item.TransitionalTypes.*;
 import com.tac.guns.item.TransitionalTypes.grenades.BaseballGrenadeItem;
 import com.tac.guns.item.TransitionalTypes.grenades.LightGrenadeItem;
+import com.tac.guns.item.TransitionalTypes.grenades.SmokeGrenadeItem;
 import com.tac.guns.item.attachment.impl.*;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
@@ -166,6 +167,9 @@ public class ModItems {
             () -> new LightGrenadeItem(new Item.Properties().maxStackSize(8).group(GunMod.EXPLOSIVES), 25 * 4, 0.95f, 1.35f));
     public static final RegistryObject<Item> BASEBALL_GRENADE = REGISTER.register("baseball_grenade",
             () -> new BaseballGrenadeItem(new Item.Properties().maxStackSize(4).group(GunMod.EXPLOSIVES), 20 * 7, 1.425f, 1.135f));
+
+    public static final RegistryObject<Item> SMOKE_GRENADE = REGISTER.register("smoke_grenade",
+            () -> new SmokeGrenadeItem(new Item.Properties().maxStackSize(4).group(GunMod.EXPLOSIVES), 20 * 7, 1.425f, 1.135f));
 
     /* Scope Attachments */
     public static final RegistryObject<Item> COYOTE_SIGHT = REGISTER.register("coyote_sight",

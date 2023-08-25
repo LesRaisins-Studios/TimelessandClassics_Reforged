@@ -2345,5 +2345,17 @@
       "sounds": [
          { "name": "tac:entity/stun_grenade/ring", "stream": true }
       ]
+   },
+   "entity.smoke_grenade.explosion":     {
+      "subtitle": "subtitle.cgm.stun.explosion",
+      "sounds": [
+         { "name": "tac:entity/smoke_grenade/sg_explosion" }
+      ]
+   },
+   "entity.smoke_grenade.hit":     {
+      "subtitle": "subtitle.cgm.stun.explosion",
+      "sounds": [
+         { "name": "tac:entity/smoke_grenade/grenade_hit" }
+      ]
    }
 }

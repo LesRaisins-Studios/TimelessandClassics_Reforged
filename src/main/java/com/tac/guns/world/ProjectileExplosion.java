@@ -158,7 +158,10 @@ public class ProjectileExplosion extends Explosion
                 PlayerEntity player = (PlayerEntity) entity;
                 if(!player.isSpectator() && (!player.isCreative() || !player.abilities.isFlying))
                 {
-                    this.getPlayerKnockbackMap().put(player, new Vector3d(deltaX * damage, deltaY * damage, deltaZ * damage));
+                    double m = Config.COMMON.grenades.knockBackMultiple.get();
+                    if(m>0){
+                        this.getPlayerKnockbackMap().put(player, new Vector3d(deltaX * damage * m , deltaY * damage * m, deltaZ * damage * m));
+                    }
                 }
             }
         }

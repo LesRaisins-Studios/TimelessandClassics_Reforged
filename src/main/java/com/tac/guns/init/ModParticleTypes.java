@@ -25,4 +25,5 @@ public class ModParticleTypes
         }
     });
     public static final RegistryObject<BasicParticleType> BLOOD = REGISTER.register("blood", () -> new BasicParticleType(true));
+    public static final RegistryObject<BasicParticleType> GRENADE_SMOKE = REGISTER.register("grenade_smoke", ()->new BasicParticleType(true));
 }
