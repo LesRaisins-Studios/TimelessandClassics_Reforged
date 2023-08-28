@@ -2,12 +2,8 @@ package com.tac.guns.item.TransitionalTypes.grenades;
 
 import com.tac.guns.entity.ThrowableGrenadeEntity;
 import com.tac.guns.entity.ThrowableSmokeGrenadeEntity;
-import com.tac.guns.entity.specifics.BaseballGrenadeEntity;
 import com.tac.guns.item.GrenadeItem;
-import com.tac.guns.item.IWeaponColorable;
-import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 /**

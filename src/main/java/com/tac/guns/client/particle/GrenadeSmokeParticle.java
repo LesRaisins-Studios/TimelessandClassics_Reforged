@@ -1,6 +1,5 @@
 package com.tac.guns.client.particle;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;

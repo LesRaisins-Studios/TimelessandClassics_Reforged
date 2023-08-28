@@ -5,7 +5,6 @@ import com.tac.guns.effect.BurnedEffect;
 import com.tac.guns.effect.IncurableEffect;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
-import net.minecraft.potion.Effects;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
