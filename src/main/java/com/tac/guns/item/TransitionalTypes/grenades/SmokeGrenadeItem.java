@@ -6,16 +6,11 @@ import com.tac.guns.item.GrenadeItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.World;
 
-/**
- * Author: Forked from MrCrayfish, continued by Timeless devs
- */
 public class SmokeGrenadeItem extends GrenadeItem
 {
-    private float power;
     public SmokeGrenadeItem(Properties properties, int maxCookTime, float power, float speed)
     {
         super(properties, maxCookTime, power, speed);
-        this.power = power;
     }
 
     public ThrowableGrenadeEntity create(World world, LivingEntity entity, int timeLeft)

@@ -36,6 +36,10 @@ public class ModifiedAreaEffectCloud extends AreaEffectCloudEntity implements IE
         this.extinguishByFire = extinguishByFire;
     }
 
+    public boolean extinguishByFire() {
+        return this.extinguishByFire;
+    }
+
     @Override
     public EntitySize getSize(Pose poseIn) {
         return EntitySize.flexible(this.getRadius() * 2.0F, height);

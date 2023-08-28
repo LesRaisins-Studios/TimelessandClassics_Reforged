@@ -70,7 +70,7 @@ public class ThrowableSmokeGrenadeEntity extends ThrowableGrenadeEntity{
         }else{
             if(ticksExisted<120 || ticksExisted%20!=0)return;
             int amount = Math.min( (ticksExisted-40) /3, 30);
-            double radius = amount/6.0f;
+            double radius = amount/5.5f;
             double x1 = this.getPosX()-radius;
             double x2 = this.getPosX()+radius;
             double y1 = this.getPosY()-radius;
@@ -84,7 +84,7 @@ public class ThrowableSmokeGrenadeEntity extends ThrowableGrenadeEntity{
                 double d0 = cloud.getPosX() - this.getPosX();
                 double d1 = cloud.getPosZ() - this.getPosZ();
                 double d2 = d0 * d0 + d1 * d1;
-                if (d2 <= (radius * radius)) {
+                if (d2 <= (radius * radius) && cloud.extinguishByFire()) {
                     cloud.remove();
                 }
             }
