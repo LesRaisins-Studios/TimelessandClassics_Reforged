@@ -14,11 +14,14 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ThrowableSmokeGrenadeEntity extends ThrowableGrenadeEntity{
     public ThrowableSmokeGrenadeEntity(EntityType<? extends ThrowableItemEntity> entityType, World worldIn) {
@@ -55,7 +58,7 @@ public class ThrowableSmokeGrenadeEntity extends ThrowableGrenadeEntity{
                 int radius = amount/5;
                 for (int i = 0; i < amount; i++) {
                     double theta = this.rand.nextDouble() * 2 * Math.PI;
-                    double phi = Math.acos(2 * this.rand.nextDouble() - 1);
+                    double phi = Math.acos(2*this.rand.nextDouble()-1);
 
                     double xs = radius * Math.sin(phi) * Math.cos(theta) * 0.05;
                     double ys =
@@ -70,56 +73,33 @@ public class ThrowableSmokeGrenadeEntity extends ThrowableGrenadeEntity{
                 }
             }
         }else{
-            if(ticksExisted%20==0){
-                int amount = Math.min( (ticksExisted-40) /2, 40);
-                int radius = amount/8;
-                int minX = MathHelper.floor(this.getPosX() - radius);
-                int maxX = MathHelper.floor(this.getPosX() + radius);
-                int minY = MathHelper.floor(y - radius);
-                int maxY = MathHelper.floor(y + radius);
-                int minZ = MathHelper.floor(this.getPosZ() - radius);
-                int maxZ = MathHelper.floor(this.getPosZ() + radius);
-                for(LivingEntity entity : this.world.getEntitiesWithinAABB(LivingEntity.class, new AxisAlignedBB(minX, minY, minZ, maxX, maxY, maxZ))) {
-                    entity.addPotionEffect(new EffectInstance(Effects.BLINDNESS,60,0,false,false));
+            if(ticksExisted<120 || ticksExisted%20!=0)return;
+            int amount = Math.min( (ticksExisted-40) /3, 30);
+            double radius = amount/6.0f;
+            double x1 = this.getPosX()-radius;
+            double x2 = this.getPosX()+radius;
+            double y1 = this.getPosY()-radius;
+            double y2 = this.getPosY()+radius;
+            double z1 = this.getPosZ()-radius;
+            double z2 = this.getPosZ()+radius;
+
+            AxisAlignedBB bb = new AxisAlignedBB(x1,y1,z1,x2,y2,z2);
+            List<ModifiedAreaEffectCloud> list1 = this.world.getEntitiesWithinAABB(ModifiedAreaEffectCloud.class, bb);
+            for (ModifiedAreaEffectCloud cloud : list1) {
+                double d0 = cloud.getPosX() - this.getPosX();
+                double d1 = cloud.getPosZ() - this.getPosZ();
+                double d2 = d0 * d0 + d1 * d1;
+                if (d2 <= (radius * radius)) {
+                    cloud.remove();
                 }
             }
         }
     }
 
     @Override
-    protected void onImpact(RayTraceResult result)
-    {
-        switch(result.getType())
-        {
-            case BLOCK:
-                BlockRayTraceResult blockResult = (BlockRayTraceResult) result;
-                if(this.shouldBounce) {
-                    double speed = this.getMotion().length();
-                    if(speed > 0.1) {
-                        this.world.playSound(null, result.getHitVec().x, result.getHitVec().y, result.getHitVec().z,
-                                ModSounds.ENTITY_SMOKE_GRENADE_HIT.get(), SoundCategory.AMBIENT, 1.0F, 1.0F);
-                    }
-                    Direction direction = blockResult.getFace();
-                    switch(direction.getAxis())
-                    {
-                        case X:
-                            this.setMotion(this.getMotion().mul(-0.5, 0.75, 0.75));
-                            break;
-                        case Y:
-                            this.setMotion(this.getMotion().mul(0.75, -0.25, 0.75));
-                            if(this.getMotion().getY() < this.getGravityVelocity())
-                            {
-                                this.setMotion(this.getMotion().mul(1, 0, 1));
-                            }
-                            break;
-                        case Z:
-                            this.setMotion(this.getMotion().mul(0.75, 0.75, -0.5));
-                            break;
-                    }
-                }
-            default:
-                break;
-        }
+    public void playImpactSound(BlockRayTraceResult result){
+        SoundEvent sound = ModSounds.ENTITY_SMOKE_GRENADE_HIT.get();
+        this.world.playSound(null, result.getHitVec().x, result.getHitVec().y, result.getHitVec().z, sound, SoundCategory.AMBIENT, 1.0F, 1.0F);
     }
 
     @Override

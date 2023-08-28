@@ -3,11 +3,12 @@ package com.tac.guns.client.gunskin;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.mojang.datafixers.util.Pair;
 import com.tac.guns.GunMod;
 import com.tac.guns.Reference;
 import com.tac.guns.item.TransitionalTypes.TimelessGunItem;
 import com.tac.guns.util.GunModifierHelper;
-import javafx.util.Pair;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.resources.IResource;
@@ -191,7 +192,7 @@ public class SkinManager {
             ResourceLocation rl = new ResourceLocation("tac:"+color);
             List<Pair<String, ResourceLocation>> skinTextures =
                     textures.stream().map(
-                            (p)-> new Pair<>(p.getKey(),ResourceLocation.tryCreate(p.getValue()+"_"+color))
+                            (p)-> new Pair<>(p.getFirst(),ResourceLocation.tryCreate(p.getSecond()+"_"+color))
                     ).collect(Collectors.toList());
             if(registerTextureOnlySkin(loader,rl,skinTextures)){
                 cnt++;
@@ -222,7 +223,7 @@ public class SkinManager {
 
     private static boolean registerTextureOnlySkin(SkinLoader loader, ResourceLocation skinLocation, List<Pair<String, ResourceLocation>> textures) {
         for(Pair<String, ResourceLocation> p : textures){
-            ResourceLocation tl = ResourceLocation.tryCreate(p.getValue().getNamespace()+":textures/"+p.getValue().getPath()+".png");
+            ResourceLocation tl = ResourceLocation.tryCreate(p.getSecond().getNamespace()+":textures/"+p.getSecond().getPath()+".png");
             if(tl == null || !Minecraft.getInstance().getResourceManager().hasResource(tl)) {
                 return false;
             }

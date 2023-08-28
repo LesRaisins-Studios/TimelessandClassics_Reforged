@@ -1,8 +1,11 @@
 package com.tac.guns.client.particle;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particles.BasicParticleType;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -56,6 +59,10 @@ public class GrenadeSmokeParticle extends SpriteTexturedParticle {
                 this.motionZ *= 0.7F;
             }
 
+            BlockPos bs = new BlockPos(this.posX,this.posY,this.posZ);
+            if(!world.getBlockState(bs).getBlock().matchesBlock(Blocks.AIR)){
+                this.setExpired();
+            }
         }
     }
 

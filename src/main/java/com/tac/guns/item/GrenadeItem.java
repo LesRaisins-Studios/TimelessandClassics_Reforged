@@ -19,7 +19,7 @@ public class GrenadeItem extends AmmoItem
 {
     protected int maxCookTime;
     private float power;
-    private float speed;
+    protected float speed;
 
     public GrenadeItem(Item.Properties properties, int maxCookTime, float power, float speed)
     {

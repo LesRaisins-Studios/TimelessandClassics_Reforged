@@ -6,13 +6,21 @@ import com.tac.guns.common.GunModifiers;
 import com.tac.guns.item.*;
 import com.tac.guns.item.TransitionalTypes.*;
 import com.tac.guns.item.TransitionalTypes.grenades.BaseballGrenadeItem;
+import com.tac.guns.item.TransitionalTypes.grenades.EffectGrenadeItem;
 import com.tac.guns.item.TransitionalTypes.grenades.LightGrenadeItem;
 import com.tac.guns.item.TransitionalTypes.grenades.SmokeGrenadeItem;
 import com.tac.guns.item.attachment.impl.*;
 import net.minecraft.item.Item;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.PotionUtils;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ModItems {
     public static final DeferredRegister<Item> REGISTER = DeferredRegister.create(ForgeRegistries.ITEMS, Reference.MOD_ID);
@@ -159,17 +167,25 @@ public class ModItems {
     public static final RegistryObject<Item> BULLET_68 = REGISTER.register("bullet68", TimelessAmmoItem::new);
 
     /* Explosives */
-    public static final RegistryObject<Item> STUN_GRENADE = REGISTER.register("stun_grenade",
-            () -> new StunGrenadeItem(new Item.Properties().maxStackSize(6).group(GunMod.EXPLOSIVES), 20 * 3,1.35f));
-    public static final RegistryObject<Item> RPG7_MISSILE = REGISTER.register("rpg7_missile",
+        public static final RegistryObject<Item> RPG7_MISSILE = REGISTER.register("rpg7_missile",
             () -> new AmmoItem(new Item.Properties().maxStackSize(6).group(GunMod.AMMO)));
     public static final RegistryObject<Item> LIGHT_GRENADE = REGISTER.register("light_grenade",
             () -> new LightGrenadeItem(new Item.Properties().maxStackSize(8).group(GunMod.EXPLOSIVES), 25 * 4, 0.95f, 1.35f));
     public static final RegistryObject<Item> BASEBALL_GRENADE = REGISTER.register("baseball_grenade",
             () -> new BaseballGrenadeItem(new Item.Properties().maxStackSize(4).group(GunMod.EXPLOSIVES), 20 * 7, 1.425f, 1.135f));
-
+    public static final RegistryObject<Item> STUN_GRENADE = REGISTER.register("stun_grenade",
+            () -> new StunGrenadeItem(new Item.Properties().maxStackSize(6).group(GunMod.EXPLOSIVES), 20 * 3,1.35f));
     public static final RegistryObject<Item> SMOKE_GRENADE = REGISTER.register("smoke_grenade",
-            () -> new SmokeGrenadeItem(new Item.Properties().maxStackSize(4).group(GunMod.EXPLOSIVES), 20 * 7, 1.425f, 1.135f));
+            () -> new SmokeGrenadeItem(new Item.Properties().maxStackSize(4).group(GunMod.EXPLOSIVES), 20 * 7, 1.425f, 0.935f));
+    public static final RegistryObject<Item> MOLOTOV = REGISTER.register("molotov",
+            () ->{EffectGrenadeItem item = new EffectGrenadeItem(
+                        new Item.Properties().maxStackSize(4).group(GunMod.EXPLOSIVES),  1.135f, EffectGrenadeItem.MOLOTOV);
+                item.setExtinguishByFire(true);
+                item.setMinRadius(2.0f);
+                item.setMaxRadius(6.0f);
+                item.setAreaDuration(600);
+                item.setParticle(()-> ParticleTypes.FLAME);
+                return item;} );
 
     /* Scope Attachments */
     public static final RegistryObject<Item> COYOTE_SIGHT = REGISTER.register("coyote_sight",

@@ -3,9 +3,10 @@ package com.tac.guns.client.gunskin;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.mojang.datafixers.util.Either;
+import com.mojang.datafixers.util.Pair;
 import com.tac.guns.client.SpecialModel;
 import com.tac.guns.init.ModItems;
-import javafx.util.Pair;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.model.BlockModel;
 import net.minecraft.client.renderer.model.BlockPart;
@@ -379,7 +380,7 @@ public enum SkinLoader {
         }
 
         public void applyTextures(List<Pair<String, ResourceLocation>> textures) {
-            textures.forEach((p) -> applyTexture(p.getKey(), p.getValue()));
+            textures.forEach((p) -> applyTexture(p.getFirst(), p.getSecond()));
         }
 
         public void applyTexture(String key, ResourceLocation textureLocation) {

@@ -4,7 +4,10 @@ import com.tac.guns.entity.ThrowableGrenadeEntity;
 import com.tac.guns.entity.ThrowableSmokeGrenadeEntity;
 import com.tac.guns.entity.specifics.BaseballGrenadeEntity;
 import com.tac.guns.item.GrenadeItem;
+import com.tac.guns.item.IWeaponColorable;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 /**
@@ -26,10 +29,9 @@ public class SmokeGrenadeItem extends GrenadeItem
 
     public boolean canCook()
     {
-        return true;
+        return false;
     }
 
-    protected void onThrown(World world, ThrowableGrenadeEntity entity)
-    {
+    protected void onThrown(World world, ThrowableGrenadeEntity entity) {
     }
 }

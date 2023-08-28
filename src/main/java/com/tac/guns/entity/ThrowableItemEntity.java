@@ -26,6 +26,9 @@ public abstract class ThrowableItemEntity extends ThrowableEntity implements IEn
 {
     private ItemStack item = ItemStack.EMPTY;
     protected boolean shouldBounce;
+
+    /* Should it break when it fell to the ground, only take effect when shouldBounce is true. */
+    protected boolean brokeOnGround = false;
     private float gravityVelocity = 0.03F;
 
     /* The max life of the entity. If -1, will stay alive forever and will need to be explicitly removed. */
@@ -60,6 +63,9 @@ public abstract class ThrowableItemEntity extends ThrowableEntity implements IEn
     {
         this.shouldBounce = shouldBounce;
     }
+    public void setBrokeOnGround(boolean brokeOnGround) {
+        this.brokeOnGround = brokeOnGround;
+    }
 
     protected void setGravityVelocity(float gravity)
     {
@@ -77,6 +83,10 @@ public abstract class ThrowableItemEntity extends ThrowableEntity implements IEn
         this.maxLife = maxLife;
     }
 
+    public int getMaxLife() {
+        return maxLife;
+    }
+
     @Override
     public void tick()
     {
@@ -90,6 +100,13 @@ public abstract class ThrowableItemEntity extends ThrowableEntity implements IEn
 
     public void onDeath() {}
 
+    protected void playImpactSound(BlockRayTraceResult result){
+        BlockPos resultPos = result.getPos();
+        BlockState state = this.world.getBlockState(resultPos);
+        SoundEvent sound = state.getBlock().getSoundType(state, this.world, resultPos, this).getStepSound();
+        this.world.playSound(null, result.getHitVec().x, result.getHitVec().y, result.getHitVec().z, sound, SoundCategory.AMBIENT, 1.0F, 1.0F);
+    }
+
     @Override
     protected void onImpact(RayTraceResult result)
     {
@@ -99,14 +116,6 @@ public abstract class ThrowableItemEntity extends ThrowableEntity implements IEn
                 BlockRayTraceResult blockResult = (BlockRayTraceResult) result;
                 if(this.shouldBounce)
                 {
-                    BlockPos resultPos = blockResult.getPos();
-                    BlockState state = this.world.getBlockState(resultPos);
-                    SoundEvent event = state.getBlock().getSoundType(state, this.world, resultPos, this).getStepSound();
-                    double speed = this.getMotion().length();
-                    if(speed > 0.1)
-                    {
-                        this.world.playSound(null, result.getHitVec().x, result.getHitVec().y, result.getHitVec().z, event, SoundCategory.AMBIENT, 1.0F, 1.0F);
-                    }
                     Direction direction = blockResult.getFace();
                     switch(direction.getAxis())
                     {
@@ -114,19 +123,29 @@ public abstract class ThrowableItemEntity extends ThrowableEntity implements IEn
                             this.setMotion(this.getMotion().mul(-0.5, 0.75, 0.75));
                             break;
                         case Y:
-                            this.setMotion(this.getMotion().mul(0.75, -0.25, 0.75));
-                            if(this.getMotion().getY() < this.getGravityVelocity())
-                            {
-                                this.setMotion(this.getMotion().mul(1, 0, 1));
+                            if(brokeOnGround){
+                                this.remove();
+                                this.onDeath();
+                                return;
+                            }else {
+                                this.setMotion(this.getMotion().mul(0.75, -0.25, 0.75));
+                                if(this.getMotion().getY() < this.getGravityVelocity())
+                                {
+                                    this.setMotion(this.getMotion().mul(1, 0, 1));
+                                }
+                                break;
                             }
-                            break;
                         case Z:
                             this.setMotion(this.getMotion().mul(0.75, 0.75, -0.5));
                             break;
                     }
+                    double speed = this.getMotion().length();
+                    if(speed > 0.1)
+                    {
+                        this.playImpactSound(blockResult);
+                    }
                 }
-                else
-                {
+                else {
                     this.remove();
                     this.onDeath();
                 }
