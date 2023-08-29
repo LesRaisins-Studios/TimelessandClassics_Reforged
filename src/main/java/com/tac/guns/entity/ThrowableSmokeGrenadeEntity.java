@@ -84,7 +84,7 @@ public class ThrowableSmokeGrenadeEntity extends ThrowableGrenadeEntity{
                 double d0 = cloud.getPosX() - this.getPosX();
                 double d1 = cloud.getPosZ() - this.getPosZ();
                 double d2 = d0 * d0 + d1 * d1;
-                if (d2 <= (radius * radius) && cloud.extinguishByFire()) {
+                if (d2 <= (radius * radius) && cloud.extinguishBySmoke()) {
                     cloud.remove();
                 }
             }

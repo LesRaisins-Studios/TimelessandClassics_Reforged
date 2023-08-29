@@ -50,7 +50,7 @@ public class EffectGrenadeItem extends GrenadeItem {
     private float maxRadius = 8.0f;
     private int areaDuration = 300;
     private float areaHeight = 0.5f;
-    private boolean extinguishByFire = false;
+    private boolean extinguishBySmoke = false;
     private Function<EffectGrenadeItem,ItemStack> createItem = (item)-> new ItemStack(this);
 
     private Supplier<IParticleData> particle = ()->ParticleTypes.ENTITY_EFFECT;
@@ -69,8 +69,8 @@ public class EffectGrenadeItem extends GrenadeItem {
     public void setAreaHeight(float areaHeight) {
         this.areaHeight = areaHeight;
     }
-    public void setExtinguishByFire(boolean extinguishByFire) {
-        this.extinguishByFire = extinguishByFire;
+    public void setExtinguishBySmoke(boolean extinguishBySmoke) {
+        this.extinguishBySmoke = extinguishBySmoke;
     }
     public void setParticle(Supplier<IParticleData> particle) {
         this.particle = particle;
@@ -98,7 +98,7 @@ public class EffectGrenadeItem extends GrenadeItem {
         grenade.setMaxRadius(maxRadius);
         grenade.setMinRadius(minRadius);
         grenade.setAreaDuration(areaDuration);
-        grenade.setExtinguishByFire(extinguishByFire);
+        grenade.setExtinguishBySmoke(extinguishBySmoke);
         grenade.setSpreadPreTick(spreadPreTick);
         grenade.setParticle(particle.get());
 

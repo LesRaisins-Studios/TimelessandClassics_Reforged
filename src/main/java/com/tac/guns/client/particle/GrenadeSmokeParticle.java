@@ -1,5 +1,6 @@
 package com.tac.guns.client.particle;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
@@ -8,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.Tags;
 
 public class GrenadeSmokeParticle extends SpriteTexturedParticle {
     private final IAnimatedSprite spriteSetWithAge;
@@ -58,9 +60,12 @@ public class GrenadeSmokeParticle extends SpriteTexturedParticle {
                 this.motionZ *= 0.7F;
             }
 
-            BlockPos bs = new BlockPos(this.posX,this.posY,this.posZ);
-            if(!world.getBlockState(bs).getBlock().matchesBlock(Blocks.AIR)){
-                this.setExpired();
+            BlockPos bp = new BlockPos(this.posX,this.posY,this.posZ);
+            BlockState bs =world.getBlockState(bp);
+            if(!bs.getBlock().matchesBlock(Blocks.AIR)){
+                if(bs.getOpacity(world, bp) != 0 && bs.isSolid() || bs.isIn(Tags.Blocks.GLASS)){
+                    this.setExpired();
+                }
             }
         }
     }

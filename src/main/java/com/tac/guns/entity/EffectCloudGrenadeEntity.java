@@ -30,7 +30,7 @@ public class EffectCloudGrenadeEntity extends ThrowableGrenadeEntity{
     private float maxRadius = 8.0f;
     private int areaDuration = 300;
     private float areaHeight = 0.5f;
-    private boolean extinguishByFire = false;
+    private boolean extinguishBySmoke = false;
 
     public EffectCloudGrenadeEntity(World world, LivingEntity player,ItemStack stack) {
         super(ModEntities.THROWABLE_EFFECT_GRENADE.get(), world, player);
@@ -94,11 +94,11 @@ public class EffectCloudGrenadeEntity extends ThrowableGrenadeEntity{
             effectCloud.addEffect(new EffectInstance(effect));
         }
 
-        effectCloud.setRadiusPerTick(0.01f);
+        effectCloud.setRadiusPerTick(this.spreadPreTick);
         effectCloud.setColor(this.color);
         effectCloud.setHeight(this.areaHeight);
         effectCloud.setRadius(this.minRadius);
-        effectCloud.setExtinguishByFire(this.extinguishByFire);
+        effectCloud.setExtinguishBySmoke(this.extinguishBySmoke);
         effectCloud.setMaxRadius(this.maxRadius);
         effectCloud.setDuration(this.areaDuration);
         effectCloud.setParticleData(this.particle);
@@ -142,8 +142,8 @@ public class EffectCloudGrenadeEntity extends ThrowableGrenadeEntity{
         this.areaHeight = areaHeight;
     }
 
-    public void setExtinguishByFire(boolean extinguishByFire) {
-        this.extinguishByFire = extinguishByFire;
+    public void setExtinguishBySmoke(boolean extinguishBySmoke) {
+        this.extinguishBySmoke = extinguishBySmoke;
     }
 
 

@@ -174,7 +174,7 @@ public class ModItems {
     public static final RegistryObject<Item> MOLOTOV = REGISTER.register("molotov",
             () ->{EffectGrenadeItem item = new EffectGrenadeItem(
                         new Item.Properties().maxStackSize(4).group(GunMod.EXPLOSIVES),  1.135f, EffectGrenadeItem.MOLOTOV);
-                item.setExtinguishByFire(true);
+                item.setExtinguishBySmoke(true);
                 item.setMinRadius(2.0f);
                 item.setMaxRadius(6.0f);
                 item.setAreaDuration(600);

@@ -22,7 +22,7 @@ public class ModifiedAreaEffectCloud extends AreaEffectCloudEntity implements IE
     }
     private float height = 1.0f;
     private float maxRadius = 4.0f;
-    private boolean extinguishByFire = false;
+    private boolean extinguishBySmoke = false;
 
     public void setHeight(float height) {
         this.height = height;
@@ -32,12 +32,12 @@ public class ModifiedAreaEffectCloud extends AreaEffectCloudEntity implements IE
         this.maxRadius = maxRadius;
     }
 
-    public void setExtinguishByFire(boolean extinguishByFire) {
-        this.extinguishByFire = extinguishByFire;
+    public void setExtinguishBySmoke(boolean extinguishBySmoke) {
+        this.extinguishBySmoke = extinguishBySmoke;
     }
 
-    public boolean extinguishByFire() {
-        return this.extinguishByFire;
+    public boolean extinguishBySmoke() {
+        return this.extinguishBySmoke;
     }
 
     @Override
