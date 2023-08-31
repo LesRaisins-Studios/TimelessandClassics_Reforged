@@ -2335,27 +2335,33 @@
       ]
    },
    "entity.stun_grenade.explosion":     {
-      "subtitle": "subtitle.cgm.stun.explosion",
+      "subtitle": "subtitle.tac.stun.explosion",
       "sounds": [
          { "name": "tac:entity/stun_grenade/explosion" }
       ]
    },
    "entity.stun_grenade.ring":          {
-      "subtitle": "subtitle.cgm.stun.ring",
+      "subtitle": "subtitle.tac.stun.ring",
       "sounds": [
          { "name": "tac:entity/stun_grenade/ring", "stream": true }
       ]
    },
    "entity.smoke_grenade.explosion":     {
-      "subtitle": "subtitle.cgm.stun.explosion",
+      "subtitle": "subtitle.tac.smoke.explosion",
       "sounds": [
          { "name": "tac:entity/smoke_grenade/sg_explosion" }
       ]
    },
    "entity.smoke_grenade.hit":     {
-      "subtitle": "subtitle.cgm.stun.explosion",
+      "subtitle": "subtitle.tac.smoke.hit",
       "sounds": [
          { "name": "tac:entity/smoke_grenade/grenade_hit" }
       ]
-   }
+   },
+   "entity.molotov.explosion":     {
+   "subtitle": "subtitle.tac.molotov.explosion",
+   "sounds": [
+      { "name": "tac:entity/effect_grenade/molotov_explosion" }
+   ]
+}
 }

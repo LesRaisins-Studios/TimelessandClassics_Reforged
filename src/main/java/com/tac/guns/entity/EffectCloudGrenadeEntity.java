@@ -13,7 +13,6 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
 
@@ -68,7 +67,7 @@ public class EffectCloudGrenadeEntity extends ThrowableGrenadeEntity{
     public void onDeath(){
         if(!world.isRemote()){
             releaseEffectCloud();
-            this.world.playSound(null,this.getPosX(),this.getPosY(),this.getPosZ(), SoundEvents.ENTITY_SPLASH_POTION_BREAK, SoundCategory.AMBIENT, 6, 1);
+            this.world.playSound(null,this.getPosX(),this.getPosY(),this.getPosZ(), ModSounds.ENTITY_MOLOTOV_EXPLOSION.get(), SoundCategory.AMBIENT, 6, 1);
         }
     }
 
