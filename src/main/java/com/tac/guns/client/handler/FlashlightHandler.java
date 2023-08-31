@@ -79,7 +79,7 @@ public class FlashlightHandler
                 if (!player.getHeldItemMainhand().getTag().contains("ID")) {
                     UUID id;
                     while (true) {
-                        LOGGER.log(Level.INFO, "NEW UUID GEN FOR TAC GUN");
+                        LOGGER.log(Level.DEBUG, "NEW UUID GEN FOR TAC GUN");
                         id = UUID.randomUUID();
                         if (NetworkGunManager.get().Ids.add(id))
                             break;

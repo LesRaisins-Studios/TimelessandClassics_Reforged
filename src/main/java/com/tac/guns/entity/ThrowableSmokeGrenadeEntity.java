@@ -49,7 +49,7 @@ public class ThrowableSmokeGrenadeEntity extends ThrowableGrenadeEntity{
                 world.addParticle(ModParticleTypes.GRENADE_SMOKE.get(),this.getPosX(),
                         y, this.getPosZ(), 0, 0.05, 0);
             }else {
-                int amount = Math.min( (ticksExisted-40) /3, 30);
+                int amount = Math.min( (ticksExisted-40), 30);
                 int radius = amount/5;
                 for (int i = 0; i < amount; i++) {
                     double theta = this.rand.nextDouble() * 2 * Math.PI;
@@ -68,8 +68,8 @@ public class ThrowableSmokeGrenadeEntity extends ThrowableGrenadeEntity{
                 }
             }
         }else{
-            if(ticksExisted<120 || ticksExisted%20!=0)return;
-            int amount = Math.min( (ticksExisted-40) /3, 30);
+            if(ticksExisted<60 || ticksExisted%20!=0)return;
+            int amount = Math.min( (ticksExisted-40), 30);
             double radius = amount/5.5f;
             double x1 = this.getPosX()-radius;
             double x2 = this.getPosX()+radius;

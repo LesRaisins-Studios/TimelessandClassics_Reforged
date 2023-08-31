@@ -29,6 +29,8 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.CooldownTracker;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -159,6 +161,13 @@ public class AimingHandler {
         }
 
         this.localTracker.handleAiming(player, player.getHeldItem(Hand.MAIN_HAND));
+
+        ItemStack stack = Minecraft.getInstance().player.getHeldItemMainhand();
+        if(stack.getItem() instanceof TimelessGunItem ){
+            float dist = 1.0f - (float) this.getNormalisedAdsProgress();
+            SyncedPlayerData.instance().set(player, ModSyncedDataKeys.AIMING_STATE, dist);
+            PacketHandler.getPlayChannel().sendToServer(new MessageAimingState(dist));
+        }
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
@@ -208,6 +217,7 @@ public class AimingHandler {
         }
     }
 
+    @OnlyIn(Dist.CLIENT)
     public boolean isAiming() {
         Minecraft mc = Minecraft.getInstance();
         if (canceling)
@@ -333,12 +343,7 @@ public class AimingHandler {
                 } else amplifier = 0.8;
             }
             float t = (float) (1F - currentAim / 4);
-            float dist = (t >= 0 || t <= 1 ? t : 0);
-            if(prevDist != dist) {
-                SyncedPlayerData.instance().set(player, ModSyncedDataKeys.AIMING_STATE, dist);
-                PacketHandler.getPlayChannel().sendToServer(new MessageAimingState(dist));
-            }
-            prevDist = dist;
+            prevDist = (t >= 0 || t <= 1 ? t : 0);
         }
 
         public boolean isAiming() {
