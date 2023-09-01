@@ -51,9 +51,9 @@ public class GrenadeSmokeParticle extends SpriteTexturedParticle {
         } else {
             this.selectSpriteWithAge(this.spriteSetWithAge);
             this.move(this.motionX, this.motionY, this.motionZ);
-            this.motionX *= 0.96F;
-            this.motionY *= 0.96F;
-            this.motionZ *= 0.96F;
+            this.motionX *= 0.95F;
+            this.motionY *= 0.94F;
+            this.motionZ *= 0.95F;
 
             if (this.onGround) {
                 this.motionX *= 0.7F;

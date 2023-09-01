@@ -63,7 +63,7 @@ public class ThrowableSmokeGrenadeEntity extends ThrowableGrenadeEntity{
                     Particle smoke = particleManager.addParticle(ModParticleTypes.GRENADE_SMOKE.get(),this.getPosX(),
                             y, this.getPosZ(), xs, ys, zs);
                     if (smoke != null) {
-                        smoke.setMaxAge(150);
+                        smoke.setMaxAge(100);
                     }
                 }
             }

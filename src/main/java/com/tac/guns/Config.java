@@ -512,12 +512,14 @@ public class Config {
     public static class Grenades {
         public final ForgeConfigSpec.DoubleValue explosionRadius;
         public final ForgeConfigSpec.DoubleValue knockBackMultiple;
+        public final ForgeConfigSpec.BooleanValue ignoreArmor;
 
         public Grenades(ForgeConfigSpec.Builder builder) {
             builder.comment("Properties relating to grenades").push("grenades");
             {
                 this.explosionRadius = builder.comment("The max distance which the explosion is effective to").defineInRange("explosionRadius", 5.0, 0.0, Double.MAX_VALUE);
                 this.knockBackMultiple = builder.comment("Multiple the explosion knock back player. This setting will affect missile too. Set '-1' to disable.").defineInRange("doKnockBack",1.0,-1,5.0);
+                this.ignoreArmor = builder.comment("Should exploison damage ignore armor protecet.").define("ignoreArmor",true);
             }
             builder.pop();
         }
