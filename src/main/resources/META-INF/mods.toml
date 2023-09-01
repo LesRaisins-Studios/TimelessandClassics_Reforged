@@ -10,7 +10,10 @@ updateJSONURL=""
 displayURL=""
 authors="TaC Squad"
 description='''
-'''
+Please note that, this mod is an unofficial branch of TaC which modified by LesRaisins Studios.
+You should not use this mod outside of the LesRaisins server by principle,
+But if you insist on doing so, it's AT YOU OWN RISK.
+    '''
 
 [[dependencies.tac]]
     modId="forge"
