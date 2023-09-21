@@ -170,7 +170,7 @@ public class ModItems {
     public static final RegistryObject<Item> STUN_GRENADE = REGISTER.register("stun_grenade",
             () -> new StunGrenadeItem(new Item.Properties().maxStackSize(6).group(GunMod.EXPLOSIVES), 20 * 3,1.35f));
     public static final RegistryObject<Item> SMOKE_GRENADE = REGISTER.register("smoke_grenade",
-            () -> new SmokeGrenadeItem(new Item.Properties().maxStackSize(4).group(GunMod.EXPLOSIVES), 20 * 7, 1.425f, 0.935f));
+            () -> new SmokeGrenadeItem(new Item.Properties().maxStackSize(4).group(GunMod.EXPLOSIVES), 20 * 7, 1.425f, 1.135f));
     public static final RegistryObject<Item> MOLOTOV = REGISTER.register("molotov",
             () ->{EffectGrenadeItem item = new EffectGrenadeItem(
                         new Item.Properties().maxStackSize(4).group(GunMod.EXPLOSIVES),  1.135f, EffectGrenadeItem.MOLOTOV);

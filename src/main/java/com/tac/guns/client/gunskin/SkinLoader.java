@@ -66,12 +66,12 @@ public class SkinLoader {
         }
         this.defaultSkin = skin;
 
-        ResourceLocation iconLoc = ResourceLocation.tryCreate(this.name.getNamespace()+":textures/gui/icon/"+this.name+".png");
+        ResourceLocation iconLoc = ResourceLocation.tryCreate(this.name.getNamespace()+":textures/gui/icon/"+this.name.getPath()+".png");
         if(iconLoc!=null && Minecraft.getInstance().getResourceManager().hasResource(iconLoc)){
             skin.setIcon(iconLoc);
         }
 
-        ResourceLocation miniIconLoc = ResourceLocation.tryCreate(this.name.getNamespace()+":textures/gui/icon/mini/"+this.name+".png");
+        ResourceLocation miniIconLoc = ResourceLocation.tryCreate(this.name.getNamespace()+":textures/gui/icon/mini/"+this.name.getPath()+".png");
         if(iconLoc!=null && Minecraft.getInstance().getResourceManager().hasResource(iconLoc)){
             skin.setMiniIcon(miniIconLoc);
         }
