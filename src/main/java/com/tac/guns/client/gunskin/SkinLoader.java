@@ -45,7 +45,12 @@ public class SkinLoader {
         return components;
     }
     public static SkinLoader getSkinLoader(String name) {
-        ResourceLocation rl = ResourceLocation.tryCreate("tac:"+name);
+        ResourceLocation rl = null;
+        if(name.indexOf(':')>=0){
+                        rl = ResourceLocation.tryCreate(name);
+        }else{
+            rl = ResourceLocation.tryCreate("tac:"+name);
+        }
         if(rl==null)return null;
         return skinLoaders.get(rl);
     }
