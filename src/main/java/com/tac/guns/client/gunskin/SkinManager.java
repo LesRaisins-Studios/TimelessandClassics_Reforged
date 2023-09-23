@@ -150,7 +150,7 @@ public class SkinManager {
 
                     if(skinObject.get("icon")!=null){
                         ResourceLocation rl = ResourceLocation.tryCreate(skinObject.get("icon").getAsString());
-                        GunSkin skin = getSkin(gun,skinLoc);
+                        GunSkin skin = getSkin(loader.getGun(),skinLoc);
                         if(skin!=null && rl!=null){
                             loader.loadSkinIcon(skin,rl);
                         }
@@ -158,7 +158,7 @@ public class SkinManager {
 
                     if(skinObject.get("mini_icon")!=null){
                         ResourceLocation rl = ResourceLocation.tryCreate(skinObject.get("mini_icon").getAsString());
-                        GunSkin skin = getSkin(gun,skinLoc);
+                        GunSkin skin = getSkin(loader.getGun(),skinLoc);
                         if(skin!=null && rl!=null){
                             loader.loadSkinMiniIcon(skin,rl);
                         }
@@ -258,7 +258,7 @@ public class SkinManager {
 
     private static GunSkin getAttachedSkin(ItemStack weapon) {
         if (weapon.getItem() instanceof TimelessGunItem) {
-            String gun = weapon.getItem().toString();
+            ResourceLocation gun = weapon.getItem().getRegistryName();
             String skin = GunModifierHelper.getAdditionalSkin(weapon).toLowerCase();
             if(!"NONE".equals(skin)){
                 ResourceLocation rl = new ResourceLocation("tac:"+skin);

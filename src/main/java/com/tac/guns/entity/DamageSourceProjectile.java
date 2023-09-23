@@ -47,4 +47,9 @@ public class DamageSourceProjectile extends IndirectEntityDamageSource
     public boolean isHeadShot() {
         return isHeadShot;
     }
+
+    @Override
+    public boolean isProjectile(){
+        return true;
+    }
 }

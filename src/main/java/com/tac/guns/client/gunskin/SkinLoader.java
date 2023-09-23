@@ -182,7 +182,7 @@ public class SkinLoader {
             if (model != null) {
                 model.applyTextures(textures);
                 ResourceLocation componentLoc = component.getModelLocation(skinName.getNamespace()+
-                        ":gunskin/generated/"+this.name+"_"+skinName.getPath());
+                        ":gunskin/generated/"+this.name.getNamespace()+this.name.getPath()+"_"+skinName.getPath());
                 skin.addComponent(component, new SpecialModel(componentLoc));
 
                 unbakedModels.put(componentLoc, model.getModel());
