@@ -297,4 +297,9 @@ public class SkinManager {
         if(rl==null)return null;
         return defaultSkins.get(rl);
     }
+
+    public static DefaultSkin getDefaultSkin(ResourceLocation gun) {
+        if(gun==null)return null;
+        return defaultSkins.get(gun);
+    }
 }
