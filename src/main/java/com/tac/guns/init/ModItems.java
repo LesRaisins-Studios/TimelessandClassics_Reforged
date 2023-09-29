@@ -168,12 +168,12 @@ public class ModItems {
     public static final RegistryObject<Item> BASEBALL_GRENADE = REGISTER.register("baseball_grenade",
             () -> new BaseballGrenadeItem(new Item.Properties().maxStackSize(4).group(GunMod.EXPLOSIVES), 20 * 7, 1.425f, 1.135f));
     public static final RegistryObject<Item> STUN_GRENADE = REGISTER.register("stun_grenade",
-            () -> new StunGrenadeItem(new Item.Properties().maxStackSize(6).group(GunMod.EXPLOSIVES), 20 * 3,1.35f));
+            () -> new StunGrenadeItem(new Item.Properties().maxStackSize(6).group(GunMod.EXPLOSIVES), 20 * 3,1.95f));
     public static final RegistryObject<Item> SMOKE_GRENADE = REGISTER.register("smoke_grenade",
-            () -> new SmokeGrenadeItem(new Item.Properties().maxStackSize(4).group(GunMod.EXPLOSIVES), 20 * 7, 1.425f, 1.135f));
+            () -> new SmokeGrenadeItem(new Item.Properties().maxStackSize(4).group(GunMod.EXPLOSIVES), 20 * 7, 1.425f, 2.1f));
     public static final RegistryObject<Item> MOLOTOV = REGISTER.register("molotov",
             () ->{EffectGrenadeItem item = new EffectGrenadeItem(
-                        new Item.Properties().maxStackSize(4).group(GunMod.EXPLOSIVES),  1.135f, EffectGrenadeItem.MOLOTOV);
+                        new Item.Properties().maxStackSize(4).group(GunMod.EXPLOSIVES),  1.85f, EffectGrenadeItem.MOLOTOV);
                 item.setExtinguishBySmoke(true);
                 item.setMinRadius(2.0f);
                 item.setMaxRadius(6.0f);
