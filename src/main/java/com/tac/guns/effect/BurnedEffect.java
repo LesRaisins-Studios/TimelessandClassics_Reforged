@@ -40,7 +40,7 @@ public class BurnedEffect extends Effect {
     public static void onLivingDamage(LivingDamageEvent event){
         if(event.getEntityLiving().isPotionActive(ModEffects.BURNED.get())){
             if(event.getSource().isFireDamage())
-                event.setAmount(event.getAmount() * 2.0f);
+                event.setAmount(event.getAmount() * 4.0f);
         }
     }
 }
