@@ -1,26 +1,9 @@
 package com.tac.guns.client.gunskin;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.mojang.datafixers.util.Either;
-import com.mojang.datafixers.util.Pair;
-import com.tac.guns.client.SpecialModel;
 import com.tac.guns.init.ModItems;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.model.BlockModel;
-import net.minecraft.client.renderer.model.BlockPart;
-import net.minecraft.client.renderer.model.IUnbakedModel;
-import net.minecraft.client.renderer.model.RenderMaterial;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.RegistryObject;
-
-import javax.annotation.Nonnull;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import static com.tac.guns.client.gunskin.ModelComponent.*;
 
@@ -190,7 +173,7 @@ public enum SkinLoaders {
     ;
 
 
-    private final ModelComponent[] components;
+    private final IModelComponent[] components;
     private final ResourceLocation name;
 
     public static void init(){
@@ -200,12 +183,12 @@ public enum SkinLoaders {
         }
     }
 
-    SkinLoaders(ResourceLocation name, ModelComponent... components) {
+    SkinLoaders(ResourceLocation name, IModelComponent... components) {
         this.components = components;
         this.name = name;
     }
 
-    SkinLoaders(RegistryObject<?> item, ModelComponent... components) {
+    SkinLoaders(RegistryObject<?> item, IModelComponent... components) {
         this(item.getId(), components);
     }
 

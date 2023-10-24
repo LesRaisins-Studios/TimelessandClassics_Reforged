@@ -4,7 +4,7 @@ import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
 
-public enum ModelComponent {
+public enum ModelComponent implements IModelComponent {
     //special
     CLUMSYYY("clumsyyy"),
     NEKOOO("nekooo"),
@@ -121,27 +121,18 @@ public enum ModelComponent {
     STOCK_TACTICAL("stock_tactical"),               //tactical stock
     STOCK_HEAVY("stock_heavy")                      //heavy stock
     ;
+
+
+
     public final String key;
     ModelComponent(String key){
         this.key = key;
     }
-    /**
-     * @return The default model location of the component according to the main component
-     * */
-    @Nullable
-    public static ResourceLocation getModelLocation(ModelComponent component, String mainLocation){
-        return component.getModelLocation(mainLocation);
-    }
-    @Nullable
-    public static ResourceLocation getModelLocation(ModelComponent component, ResourceLocation mainLocation){
-        return component.getModelLocation(mainLocation);
-    }
-    @Nullable
-    public ResourceLocation getModelLocation(String mainLocation){
-        return ResourceLocation.tryCreate(mainLocation+(this==BODY ? "" : "_" + this.key));
-    }
-    @Nullable
-    public ResourceLocation getModelLocation(ResourceLocation mainLocation){
-        return ResourceLocation.tryCreate(mainLocation+(this==BODY ? "" : "_" + this.key));
+
+
+
+    @Override
+    public String getKey() {
+        return key;
     }
 }
