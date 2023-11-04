@@ -379,7 +379,7 @@ public class ProjectileEntity extends Entity implements IEntityAdditionalSpawnDa
         return new EntityResult(entity, hitPos, headshot);
     }
 
-    private void onHit(RayTraceResult result, Vector3d startVec, Vector3d endVec) {
+    protected void onHit(RayTraceResult result, Vector3d startVec, Vector3d endVec) {
         if (modifiedGun == null)
             return;
 
